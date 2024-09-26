@@ -21,8 +21,11 @@ Run: npm run dev
 
 ### Postman
 
-Post:
-http://localhost:5555/api/blogs
+**URL**
+
+Remote: https://oose-teamrookieenginners-backend.onrender.com
+
+Local: http://localhost:5555/api/blogs
 
 {
 "title": "My Experience with Google's Online Assessment",
