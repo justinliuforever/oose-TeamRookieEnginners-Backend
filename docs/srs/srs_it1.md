@@ -18,6 +18,7 @@ Users can upload their resumes, allowing the platform to match them with relevan
 
 **Functional Requirements:** List the (functional) requirements that software needs to have in order to solve the problem stated above. List these in role-goal-benefit format. It is useful to try to group the requirements into those that are essential (must have), and those which are non-essential (but nice to have).  
 **Must have**
+- Post OA Post: As a user wanting to share OA information, I want to be able to post and view other people's past experience, so I need to be able to fill out a form with company job information and my experience.
 
 - User Login System: As a registered user, I want to securely log in to my account so that I can access personalized content and manage my interview preparations. 
 
