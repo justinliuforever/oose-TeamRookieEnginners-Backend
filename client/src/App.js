@@ -1,35 +1,66 @@
 import logo from './logo.svg';
 import './App.css';
 
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
 function App() {
+  const [blog, setBlog] = useState([]);
+  const [blogDetails, setBlogDetails] = useState({
+    title: '',
+    companyName: '',
+    jobTitle: '',
+    content: '',
+    assessmentType: '',
+    author: '',
+    fileURL: '',
+  });
+
+  useEffect(() => {
+    fetchBlog();
+  }, []);
+
+  // Fetch all books from the backend
+  const fetchBlog = async () => {
+    try {
+      const response = await axios.get('http://localhost:5555/api/blogs');
+      console.log("all okay");
+      console.log(response.data.data[0]);
+      setBlog(response.data.data[0]);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <div className="Body">
       <div className="blogTitle">
-        <h1>Blog title goes here </h1>
+        <h1>{blog.title} </h1>
         <div className="subTitle">
           <div className="left">
-            Company Name
+            {blog.companyName}
           </div>
           <div className="right">
-            Job Position
+            {blog.jobTitle}
           </div>
         </div>
       </div>
       <div className="bodyContent">
         <div className="mainContent">
-          <p>This is content about the blog title. Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+          <p>{blog.content}</p>
           <div className="mediaContent">
+          File upload result here
             <img src="./temp.jpeg"/>
           </div>
           <div className="contentBottom">
             <div className="leftCB">
               upload file button will go here if poster<br/>
-              otherwise like and dislike btn
+              <button>Like</button> <button>Dislike</button>
             </div>
             <div className="rightCB">
               <div className="assessmentType"> 
-              Assessment Type/Tag goes here, Author goes here <br/>
-              Created on date, last edited date
+              {blog.assessmentType}, {blog.author} <br/>
+              Created on date/last edited date
               </div>
             </div>
           </div>
