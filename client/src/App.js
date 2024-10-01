@@ -33,19 +33,42 @@ function App() {
 
   const addBlog = async (e) => {
     e.preventDefault();
+    
     try {
-      const response = await axios.post('http://localhost:5555/api/blogs', JSON.stringify(blogDetails));
-      setBlog([...blogs, response.data]); // Update the state with the new book
-      setBlogDetails({ title: '',
-        companyName: '',
-        jobTitle: '',
-        content: '',
-        assessmentType: '',
-        author: ''}); 
+        const blogData = {
+            title: blogDetails.title,
+            companyName: blogDetails.companyName,
+            jobTitle: blogDetails.jobTitle,
+            content: blogDetails.content,
+            assessmentType: blogDetails.assessmentType,
+        };
+        
+        // Include the author only if it has been set
+        if (blogDetails.author) {
+            blogData.author = blogDetails.author;
+        }
+
+        const response = await axios.post('http://localhost:5555/api/blogs', blogData, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        setBlog([...blogs, response.data]);
+        setBlogDetails({
+            title: '',
+            companyName: '',
+            jobTitle: '',
+            content: '',
+            assessmentType: '',
+            author: '',
+        });
     } catch (err) {
-      console.error(err);
+        console.error('Error while posting:', err.response ? err.response.data : err.message);
     }
   };
+
+
 
   return (
     <div className="Body">
@@ -96,7 +119,6 @@ function App() {
               placeholder="Author"
               value={blogDetails.author}
               onChange={(e) => setBlogDetails({ ...blogDetails, author: e.target.value })}
-              required
               className="titleInput"
             />
             <button type="submit" className="submitBtn">Add Blog</button>
