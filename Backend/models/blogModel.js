@@ -29,7 +29,7 @@ const blogSchema = mongoose.Schema(
     author: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User', // Reference to the user who authored the blog
-      required: true,
+      required: false,
     },
     usersPreparing: [
       {
