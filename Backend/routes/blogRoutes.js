@@ -6,8 +6,6 @@ const router = express.Router();
 
 // Create a new blog post
 router.post('/', async (req, res) => {
-  console.log(req.body);
-  
   // Check for required fields
   if (
     !req.body.title ||

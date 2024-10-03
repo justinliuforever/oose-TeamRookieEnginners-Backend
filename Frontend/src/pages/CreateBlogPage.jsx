@@ -12,6 +12,7 @@ export default function CreateBlogPage() {
     assessmentType: '',
     fileURL: '',
     companyLogoURL: '',
+    author: '60d0fe4f5311236168a109ca', // Replace 'defaultUserId' after we have a login system
   });
 
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ export default function CreateBlogPage() {
         alert('Blog post created successfully!');
         navigate('/blog'); // Redirect to the blog page
       } else {
+        console.error('Error from server:', result.error); // Log the error from the server
         alert(result.message);
       }
     } catch (error) {

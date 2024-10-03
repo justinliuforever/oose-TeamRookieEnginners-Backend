@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "setup": "npm install && npm install react-router-dom @headlessui/react @heroicons/react && npm install -D tailwindcss postcss autoprefixer && npm install @tailwindcss/forms"
   },
   "dependencies": {
     "@headlessui/react": "^2.1.8",
