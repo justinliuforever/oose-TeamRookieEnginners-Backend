@@ -31,6 +31,10 @@ const blogSchema = mongoose.Schema(
       ref: 'User', // Reference to the user who authored the blog
       required: false,
     },
+    companyLogoURL: {
+      type: String,
+      required: false, // Optional URL for the company's logo image
+    },
     usersPreparing: [
       {
         type: mongoose.Schema.Types.ObjectId,

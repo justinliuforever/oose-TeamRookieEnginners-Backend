@@ -6,6 +6,22 @@ const router = express.Router();
 
 // Create a new blog post
 router.post('/', async (req, res) => {
+  console.log(req.body);
+  
+  // Check for required fields
+  if (
+    !req.body.title ||
+    !req.body.companyName ||
+    !req.body.jobTitle ||
+    !req.body.content ||
+    !req.body.assessmentType
+  ) {
+    return res.status(400).send({ 
+      success: false,
+      message: 'Please include all required fields: title, companyName, jobTitle, content, and assessmentType' 
+    });
+  }
+
   try {
     const newBlog = await Blog.create(req.body);
     res.status(201).json({
@@ -14,9 +30,10 @@ router.post('/', async (req, res) => {
       data: newBlog
     });
   } catch (error) {
-    res.status(400).json({
+    console.error(error);
+    res.status(500).json({
       success: false,
-      message: 'Failed to create blog post',
+      message: 'Internal Server Error',
       error: error.message
     });
   }
